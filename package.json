@@ -4,6 +4,7 @@
   "description": "Repo for devops demo",
   "main": "index.js",
   "dependencies": {
+    "cypress": "^3.2.0",
     "mocha": "^6.0.2",
     "next": "^8.0.4",
     "react": "^16.8.6",
@@ -12,6 +13,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "cypress:open": "cypress open",
     "dev": "next",
     "build": "next build",
     "start": "next start",
