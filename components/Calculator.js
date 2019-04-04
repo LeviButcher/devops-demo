@@ -1,7 +1,9 @@
 import React from "react";
 import Calc from "../lib/calculator";
+import RadioList from "./RadioList";
+import InputList from "./InputList";
 
-// Each option has a number of inputs to be display and a corresponding function
+// Each option has a number of inputs to be displayed and a corresponding function
 const operations = [
   {
     name: "add",
@@ -14,6 +16,18 @@ const operations = [
   {
     name: "subtract",
     inputs: 2
+  },
+  {
+    name: "multiply",
+    inputs: 2
+  },
+  {
+    name: "divide",
+    inputs: 2
+  },
+  {
+    name: "square",
+    inputs: 1
   }
 ];
 const calc = new Calc();
@@ -36,14 +50,12 @@ class Calculator extends React.Component {
 
   updateResult(event) {
     const { selected } = this.state;
-    console.log("selected", selected);
     operations.forEach(operator => {
       if (operator.name === selected) {
         let inputCollection = this.inputs.current.children;
         let values = [...inputCollection].map(input => {
           return Number(input.value);
         });
-        console.log(values);
         const result = calc[selected](...values);
         this.setState({
           result: result
@@ -54,38 +66,23 @@ class Calculator extends React.Component {
 
   render() {
     const { selected, result } = this.state;
+    const inputNum = operations.find(item => item.name == selected).inputs;
+
     return (
       <div>
-        {operations.map((operator, index) => {
-          return (
-            <input
-              key={operator.name}
-              type="radio"
-              name="operator"
-              value={operator.name}
-              checked={selected == operator.name}
-              onChange={e => this.updateOption(e)}
-            />
-          );
-        })}
+        <RadioList
+          valueList={operations.map(option => option.name)}
+          selected={selected}
+          callback={e => this.updateOption(e)}
+        />
         <h3>Enter Values</h3>
-        {(() => {
-          const operator = operations.find(item => item.name == selected);
-          console.log("operator", operator);
-          return (
-            <div ref={this.inputs}>
-              {new Array(operator.inputs).fill("Why").map(item => {
-                return <input type="number" />;
-              })}
-            </div>
-          );
-        })()}
+        <InputList inputNum={inputNum} ref={this.inputs} />
         <button onClick={e => this.updateResult(e)}>Calculate Results</button>
-        {(() => {
-          if (result) {
-            return <h5>{result}</h5>;
-          }
-        })()}
+        <div>
+          {calc.history().map(result => {
+            return <h5 key={result}>{result}</h5>;
+          })}
+        </div>
       </div>
     );
   }
