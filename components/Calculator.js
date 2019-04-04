@@ -30,7 +30,6 @@ const operations = [
     inputs: 1
   }
 ];
-const calc = new Calc();
 
 class Calculator extends React.Component {
   constructor() {
@@ -39,6 +38,7 @@ class Calculator extends React.Component {
       selected: operations[0].name
     };
     this.inputs = React.createRef();
+    this.calc = new Calc();
   }
 
   updateOption(event) {
@@ -56,7 +56,7 @@ class Calculator extends React.Component {
         let values = [...inputCollection].map(input => {
           return Number(input.value);
         });
-        const result = calc[selected](...values);
+        const result = this.calc[selected](...values);
         this.setState({
           result: result
         });
@@ -70,6 +70,7 @@ class Calculator extends React.Component {
 
     return (
       <div>
+        <h3>Operations</h3>
         <RadioList
           valueList={operations.map(option => option.name)}
           selected={selected}
@@ -78,8 +79,9 @@ class Calculator extends React.Component {
         <h3>Enter Values</h3>
         <InputList inputNum={inputNum} ref={this.inputs} />
         <button onClick={e => this.updateResult(e)}>Calculate Results</button>
+        <h3>History</h3>
         <div>
-          {calc.history().map(result => {
+          {this.calc.history().map(result => {
             return <h5 key={result}>{result}</h5>;
           })}
         </div>
