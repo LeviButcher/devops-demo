@@ -1,13 +1,12 @@
-import styled from "styled-components";
-
-const Body = styled.h1`
-  font-size: 16px;
-  text-align: center;
-  background-color: blue;
-`;
+import withLayout from "../components/Layout";
+import Calculator from "../components/Calculator";
 
 function Home() {
-  return <Body>Hello World</Body>;
+  return (
+    <div>
+      <Calculator />
+    </div>
+  );
 }
 
-export default Home;
+export default withLayout(Home);
