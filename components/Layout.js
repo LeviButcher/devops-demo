@@ -1,3 +1,12 @@
-import Header from "Header";
+import Header from "./Header";
 
-function Layout() {}
+const withLayout = Page => {
+  return () => (
+    <div>
+      <Header />
+      <Page />
+    </div>
+  );
+};
+
+export default withLayout;

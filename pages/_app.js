@@ -1,6 +1,5 @@
 import React from "react";
 import App, { Container } from "next/app";
-import Header from "../components/Header";
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -18,7 +17,6 @@ class MyApp extends App {
 
     return (
       <Container>
-        <Header />
         <Component {...pageProps} />
       </Container>
     );

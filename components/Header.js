@@ -1,14 +1,18 @@
 import styled from "styled-components";
 
-const NavContainer = styled.nav`
+const Nav = ({ className, children }) => (
+  <nav className={className}>{children}</nav>
+);
+
+const StyledNav = styled(Nav)`
   height: 50px;
-  background-color: #dad;
+  text-align: center;
 `;
 
 const Header = () => (
-  <NavContainer>
-    <h1> Hello World </h1>
-  </NavContainer>
+  <StyledNav>
+    <h1> The Amazing Calculator!!! </h1>
+  </StyledNav>
 );
 
 export default Header;
