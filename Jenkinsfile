@@ -1,9 +1,9 @@
 pipeline {
-    agent { 
+    agent {
         docker {
             image 'node:10'
             args '-p 80:3000'
-        } 
+        }
     }
     stages {
         stage('build') {
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                sh 'npm start &'
+                sh './scripts/deploy.sh'
             }
         }
     }
