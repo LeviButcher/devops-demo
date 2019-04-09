@@ -19,7 +19,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                sh 'JENKINS_NODE_COOKIE=dontKillMe npm start'
+                sh './scripts/deploy.sh'
             }
         }
     }
