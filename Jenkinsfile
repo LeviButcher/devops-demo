@@ -19,6 +19,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
+                sh 'npm build'
                 sh 'npm start'
             }
         }
