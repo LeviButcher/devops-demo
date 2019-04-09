@@ -1,5 +1,10 @@
 pipeline {
-    agent { docker { image 'node:6.3' } }
+    agent { 
+        docker {
+            image 'node:6.3'
+            args '-p 80:3000'
+        } 
+    }
     stages {
         stage('build') {
             steps {
@@ -14,7 +19,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                sh 'echo were at deploy'
+                sh 'next start'
             }
         }
     }
