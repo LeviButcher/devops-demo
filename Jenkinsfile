@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:10'
-            args '-p 80:3000'
+            args '-p 80:3000 -u root'
         }
     }
     stages {
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                sh 'bash ./scripts/deploy.sh'
+                sh './scripts/deploy.sh'
             }
         }
     }
