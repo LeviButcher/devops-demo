@@ -19,6 +19,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
+                sh 'chmod 555 ./scripts/deploy.sh'
                 sh './scripts/deploy.sh'
             }
         }
