@@ -16,7 +16,9 @@ jobs:
       - run: npm test
 workflows:
   version: 2
-  workflow:
+  build_and_test:
     jobs:
       - build
-      - test
+      - test:
+        requires:
+          - build
