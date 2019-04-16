@@ -1,12 +1,12 @@
+echo "Cloning Repo"
+git clone https://github.com/LeviButcher/devops-demo
 
-echo "Building the application"
-set -x
-npm run build
-set +x
+cd devops-demo/
+
+docker build . --tag lcbutch/calc:latest
+
+docker stop calc
+docker rm calc
 
 echo "Deploying the application"
-# & is neccessary to run app as background process
-set -x
-npm start &
-sleep 1
-set +x
+docker run -d --name calc -p 1337:3000 -t lcbutch/calc:latest
