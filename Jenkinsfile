@@ -18,8 +18,8 @@ pipeline {
             }
         }
         stage('deploy') {
+        steps {
           withCredentials([sshUserPrivateKey(usernameVariable: 'userssh'), string(variable: 'server'), string(variable: 'port')]) {
-            steps {
               sh 'chmod 555 ./scripts/deploy.sh'
               sh 'ssh $userssh@$server -p $port ./scripts/deploy.sh'
             }
