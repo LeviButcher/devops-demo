@@ -19,9 +19,11 @@ pipeline {
         }
         stage('deploy') {
         steps {
-          withCredentials([sshUserPrivateKey(usernameVariable: 'userssh'), string(variable: 'server'), string(variable: 'port')]) {
+         withCredentials([sshUserPrivateKey(credentialsId: 'sshuser', keyFileVariable: 'key', passphraseVariable: '', usernameVariable: 'user'), string(credentialsId: 'port', variable: 'serverPort'), string(credentialsId: 'serverip', variable: 'serverIP')]) {
               sh 'chmod 555 ./scripts/deploy.sh'
-              sh 'ssh $userssh@$server -p $port ./scripts/deploy.sh'
+              sh 'cat $key > tempfile'
+              sh 'chmod 300 ./tempfile'
+              sh 'cat ./scripts/deploy.sh | ssh -o "StrictHostKeyChecking=no" -i ./tempfile $user@$serverIP -p $serverPort "bash -"'
             }
           }
         }
