@@ -3,6 +3,8 @@ git clone https://github.com/LeviButcher/devops-demo
 
 cd devops-demo/
 
+git pull
+
 docker build --no-cache . --tag lcbutch/calc:latest
 
 docker stop calc
