@@ -6,7 +6,9 @@ const Nav = ({ className, children }) => (
 
 const StyledNav = styled(Nav)`
   height: 50px;
+  font-size: 1.5rem;
   text-align: center;
+  color: blue;
 `;
 
 const Header = () => (

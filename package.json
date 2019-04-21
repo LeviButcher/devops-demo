@@ -4,8 +4,9 @@
   "description": "Repo for devops demo",
   "main": "index.js",
   "dependencies": {
+    "babel-plugin-styled-components": "^1.10.0",
     "cypress": "^3.2.0",
-    "mocha": "^6.0.2",
+    "mocha": "^6.1.4",
     "next": "^8.0.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
