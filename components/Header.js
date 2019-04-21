@@ -8,7 +8,7 @@ const StyledNav = styled(Nav)`
   height: 50px;
   font-size: 1.5rem;
   text-align: center;
-  color: blue;
+  color: #E61D1D;
 `;
 
 const Header = () => (
