@@ -3,7 +3,7 @@ git clone https://github.com/LeviButcher/devops-demo
 
 cd devops-demo/
 
-docker build . --tag lcbutch/calc:latest
+docker build --no-cache . --tag lcbutch/calc:latest
 
 docker stop calc
 docker rm calc
